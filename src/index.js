@@ -1,6 +1,7 @@
 const sockets = require('socket.io')
 const express = require('express')
 const http = require('http')
+const fs = require('fs')
 
 const PASSWORD = '123456';
 
@@ -19,6 +20,8 @@ server.on('connection', socket => {
         console.log('Password received: ', password)
         if (password === PASSWORD) {
             socket.emit('login', true)
+
+            socket.emit('services', JSON.stringify(fs.readFileSync('./services.json')));
         } else {
             socket.emit('login', false)
         }
