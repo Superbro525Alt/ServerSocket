@@ -69,17 +69,17 @@ server.on('connection', socket => {
 
         service.stdout.on("data", data => {
             console.log(`stdout: ${data}`);
-            socket.emit('service_log', data);
+            socket.emit('service_log', {type:"log", data: data});
         });
 
         service.stderr.on("data", data => {
             console.log(`stderr: ${data}`);
-            socket.emit('service_log', data);
+            socket.emit('service_log', {type:"error", data: data});
         });
 
         service.on('error', (error) => {
             console.log(`error: ${error.message}`);
-            socket.emit('service_log', error.message);
+            socket.emit('service_log', {type:"error", data: error.message});
         });
 
         service.on("close", code => {
