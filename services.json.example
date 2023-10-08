@@ -1,0 +1,1 @@
+"{\n  \"services\": [\n    {\n      \"name\": \"Test\",\n      \"type\": \"test\",\n      \"start\": \"echo test\",\n       \"active\": false\n    }\n  ]\n}"
